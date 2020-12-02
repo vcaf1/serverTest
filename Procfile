@@ -1,1 +1,1 @@
-web: java -jar target/serverTest-1.0.jar
+web: lein run -m demo.web $PORT
