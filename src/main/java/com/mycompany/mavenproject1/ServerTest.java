@@ -50,9 +50,16 @@ public class ServerTest {
 
     public static void main(String[] args) {
         try {
+        ProcessBuilder processBuilder = new ProcessBuilder();
 
             // Bind to port 8080
-            HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
+            HttpServer httpServer = HttpServer.create(new InetSocketAddress(5000), 0);
+            System.out.println(httpServer.getAddress());
+            System.out.println(httpServer.getExecutor());
+            
+        if (processBuilder.environment().get("PORT") != null) {
+            System.out.println(Integer.parseInt(processBuilder.environment().get("PORT")));
+        }
 
             // Adding '/test' context
             httpServer.createContext("/test", new ServerTest.TestHandler());
