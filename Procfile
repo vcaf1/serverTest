@@ -1,1 +1,0 @@
-web: java -jar target/serverTest-1.0.jar
