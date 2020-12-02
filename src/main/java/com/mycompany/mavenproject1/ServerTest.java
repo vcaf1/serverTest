@@ -45,21 +45,6 @@ import org.json.simple.parser.ParseException;
  */
 public class ServerTest {
     
-    public ServerTest(){
-        try{
-            Connection con = DBCPDataSource.getConnection();
-            Statement stat = con.createStatement();
-            ResultSet result= stat.executeQuery("select * from luchtmoduledatas");
-            while(result.next()){
-                LuchtModule lchtmod = new LuchtModule();
-                lchtmod.setValueTem(result.getInt("LuchtTemperatuur"));
-                lchtmod.setValueHum(result.getInt("LuchtHumidity"));
-                System.out.println(lchtmod.getValueHum());
-            }
-        }catch(SQLException e){
-            
-        }
-    }
 
     private static HttpURLConnection con;
 
