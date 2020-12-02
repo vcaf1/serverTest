@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=${PORT} ${JAVA_OPTS} -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL}
+web: java -Dserver.port=$PORT -jar target/target/mavenproject1.1.0-SNAPSHOT.jar
