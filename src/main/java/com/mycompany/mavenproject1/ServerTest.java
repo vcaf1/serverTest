@@ -62,7 +62,7 @@ public class ServerTest {
         try {
 
             // Bind to port 8080
-            HttpServer httpServer = HttpServer.create(new InetSocketAddress(9876), 0);
+            HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
 
             // Adding '/test' context
             httpServer.createContext("/test", new ServerTest.TestHandler());
