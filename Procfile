@@ -1,1 +1,1 @@
-web: java -jar target/com.mycompany-1.0.jar
+web: java -jar target/serverTest-1.0.jar
