@@ -1,1 +1,2 @@
-web: lein run -m demo.web $PORT
+
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1;
