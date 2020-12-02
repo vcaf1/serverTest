@@ -1,2 +1,1 @@
-
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1;
+web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/serverTest-1.0.jar
