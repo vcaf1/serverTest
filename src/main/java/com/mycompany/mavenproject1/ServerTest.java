@@ -14,6 +14,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +25,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,6 +39,22 @@ import org.json.simple.parser.ParseException;
  * @author Victoria
  */
 public class ServerTest {
+    
+    public ServerTest(){
+        try{
+            Connection con = DBCPDataSource.getConnection();
+            Statement stat = con.createStatement();
+            ResultSet result= stat.executeQuery("select * from luchtmoduledatas");
+            while(result.next()){
+                LuchtModule lchtmod = new LuchtModule();
+                lchtmod.setValueTem(result.getInt("LuchtTemperatuur"));
+                lchtmod.setValueHum(result.getInt("LuchtHumidity"));
+                System.out.println(lchtmod.getValueHum());
+            }
+        }catch(SQLException e){
+            
+        }
+    }
 
     private static HttpURLConnection con;
 
@@ -68,7 +92,6 @@ public class ServerTest {
     static class TestHandler implements HttpHandler {
 
         String id;
-        Modules mod = new Modules();
         ArrayList<LuchtModule> lijst = new ArrayList<>();
 
         public void handle(HttpExchange he) throws IOException {
@@ -113,74 +136,36 @@ public class ServerTest {
                     JSONObject jsonobject = (JSONObject) o;
                     LuchtModule module = new LuchtModule();
                     try {
-                        id = (String) jsonobject.get("vs");
+                        String Payload = (String) jsonobject.get("vs");
+                        String HumidityHex = Payload.substring(2, 4);
+                        String TemperatuurHex = Payload.substring(6);
+                        Integer HumidityDec = Integer.parseInt(HumidityHex, 16);
+                        Integer TemperatuurDec = Integer.parseInt(TemperatuurHex, 16);
 
-                        module.setId(id);
+                        module.setValueHum(HumidityDec);
+                        module.setValueTem(TemperatuurDec);
                         lijst.add(module);
 
-                        mod.voegtoe(module);
 
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println("Couldn't find the vs atribute");
 
                     }
                 }
-                String moduleId = lijst.get(1).id;
-                System.out.println("Original String: " + moduleId);
-                try {
+                int moduleHumidity = lijst.get(0).valueHum;
+                int moduleTemperatuur = lijst.get(0).valueTem;
+                
+                System.out.println("Humidity: " + moduleHumidity);
+                System.out.println("Temperatuur: " + moduleTemperatuur);
 
-                    try {
-
-                        StringBuilder output = new StringBuilder("");
-                        for (int i = 0; i < moduleId.length(); i += 2) {
-                            String str = moduleId.substring(i, i + 2);
-                            output.append((char) Integer.parseInt(str, 16));
-                        }
-                    System.out.println("Ascii String: " + output.toString());
-                                    os.write(output.toString().getBytes());
-
-                    } catch (Exception e) {
-
-                    }
-
-                    //String asciiEquivalent = hexToASCII(demoString);
-                    //ASCII value obtained from Hex value
-                    //System.out.println("Ascii String: " + asciiEquivalent);
-                    //String hexEquivalent = asciiToHex(asciiEquivalent);
-                    //Hex value of original String
-                    //System.out.println("Hex String: " + hexEquivalent);
-                } catch (Exception e) {
-                    System.out.print("The hex");
-                }
-
-
-                System.out.println("Data: " + data);
-                System.out.println("String : " + new String(data));
+                System.out.println("Json formaat String : " + new String(data));
                 he.close();
                 //throw new IllegalAccessException("demo");
 
             } else {
                 System.out.print(he);
             }
-        }
-
-        public String asciiToHex(String asciiValue) {
-            char[] chars = asciiValue.toCharArray();
-            StringBuffer hex = new StringBuffer();
-            for (int i = 0; i < chars.length; i++) {
-                hex.append(Integer.toHexString((int) chars[i]));
-            }
-            return hex.toString();
-        }
-
-        private String hexToASCII(String hexValue) {
-            StringBuilder output = new StringBuilder("");
-            String string = new String();
-            for (int i = 0; i < hexValue.length(); i += 2) {
-                String str = hexValue.substring(i, i + 2);
-                output.append((char) Integer.parseInt(str, 16));
-            }
-            return output.toString();
         }
 
     }

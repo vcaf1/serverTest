@@ -11,21 +11,46 @@ package com.mycompany.mavenproject1;
  */
 public class LuchtModule {
 
-    String id;
+    int id, valueTem,valueHum;
 
     public LuchtModule() {
 
     }
 
-    public LuchtModule(String id) {
-        this.id = id;
+    public LuchtModule(int valueTem, int valueHum) {
+        this.valueTem = valueTem;
+        this.valueHum = valueHum;
     }
 
-    public String getId() {
+    public LuchtModule(int id, int valueTem, int valueHum) {
+        this.id = id;
+        this.valueTem = valueTem;
+        this.valueHum = valueHum;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    public int getValueTem() {
+        return valueTem;
+    }
+
+    public void setValueTem(int valueTem) {
+        this.valueTem = valueTem;
+    }
+
+    public int getValueHum() {
+        return valueHum;
+    }
+
+    public void setValueHum(int valueHum) {
+        this.valueHum = valueHum;
+    }
+
+
 }
