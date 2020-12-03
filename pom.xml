@@ -17,9 +17,9 @@
       <artifactId>heroku-maven-plugin</artifactId>
       <version>3.0.4</version>
       <configuration>
-        <appName>${heroku.appName}</appName>
+        <appName>Server</appName>
         <processTypes>
-          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1.ServerTest</web>
+          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Server</web>
         </processTypes>
   <appName>Server</appName>
     <descriptorRefs>
