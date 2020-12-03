@@ -37,10 +37,11 @@ public class ServerTest {
     public static void main(String[] args) {
         try {
         int port = System.getenv("PORT") == null ? 25164 : Integer.parseInt(System.getenv("PORT"));
+        int portt= Integer.parseInt(System.getenv("PORT"));
         System.out.print(port);
 
             // Bind to port 8080
-            HttpServer httpServer = HttpServer.create(new InetSocketAddress(port), 0);
+            HttpServer httpServer = HttpServer.create(new InetSocketAddress(portt), 0);
             System.out.println(httpServer.getAddress());
             System.out.println(httpServer.getExecutor());
             
