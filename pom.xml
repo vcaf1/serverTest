@@ -10,6 +10,21 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <build>
+  <plugins>
+    <plugin>
+      <groupId>com.heroku.sdk</groupId>
+      <artifactId>heroku-maven-plugin</artifactId>
+      <version>3.0.4</version>
+      <configuration>
+        <appName>${heroku.appName}</appName>
+        <processTypes>
+          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1</web>
+        </processTypes>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
     <dependencies>
         
         <dependency>
