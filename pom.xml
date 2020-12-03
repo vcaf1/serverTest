@@ -22,6 +22,9 @@
           <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1</web>
         </processTypes>
       </configuration>
+      <configuration>
+  <appName>Server</appName>
+</configuration>
     </plugin>
   </plugins>
 </build>

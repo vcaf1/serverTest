@@ -36,7 +36,6 @@ public class ServerTest {
 
     public static void main(String[] args) {
         try {
-        ProcessBuilder processBuilder = new ProcessBuilder();
         int port = System.getenv("PORT") == null ? 5000 : Integer.parseInt(System.getenv("PORT"));
         System.out.print(port);
 
@@ -45,9 +44,6 @@ public class ServerTest {
             System.out.println(httpServer.getAddress());
             System.out.println(httpServer.getExecutor());
             
-        if (processBuilder.environment().get("PORT") != null) {
-            System.out.println(Integer.parseInt(processBuilder.environment().get("PORT")));
-        }
 
             // Adding '/test' context
             httpServer.createContext("/test", new ServerTest.TestHandler());
