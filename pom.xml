@@ -22,9 +22,10 @@
     <finalName>helloworld</finalName>
   </configuration>
 </plugin>
-</plugins>
+        </plugins>
     </build>
     <dependencies>
+        
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
