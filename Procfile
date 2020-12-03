@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* ServerTest
+web: java -Dserver.port=$PORT -jar target/target/mavenproject-1.0-SNAPSHOT.jar
