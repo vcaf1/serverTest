@@ -21,10 +21,11 @@
         <processTypes>
           <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mycompany.mavenproject1</web>
         </processTypes>
-      </configuration>
-      <configuration>
   <appName>Server</appName>
-</configuration>
+    <descriptorRefs>
+      <descriptorRef>jar-with-dependencies</descriptorRef>
+    </descriptorRefs>
+      </configuration>
     </plugin>
   </plugins>
 </build>
