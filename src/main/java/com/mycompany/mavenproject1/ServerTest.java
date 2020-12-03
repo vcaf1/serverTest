@@ -5,6 +5,7 @@
  */
 package com.mycompany.mavenproject1;
 
+import com.sun.corba.se.spi.activation.Server;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -30,7 +31,6 @@ import org.json.simple.parser.ParseException;
  * @author Victoria
  */
 public class ServerTest {
-    
 
     private static HttpURLConnection con;
 
