@@ -1,1 +1,1 @@
-web: java -jar target/mavenproject1-1.0-SNAPSHOT
+web: java -Dserver.port=$PORT -jar target/target/mavenproject1-1.0-SNAPSHOT.jar--server.port=$PORT

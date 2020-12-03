@@ -36,7 +36,7 @@ public class ServerTest {
 
     public static void main(String[] args) {
         try {
-        int port = System.getenv("PORT") == null ? 5000 : Integer.parseInt(System.getenv("PORT"));
+        int port = System.getenv("PORT") == null ? 8080 : Integer.parseInt(System.getenv("PORT"));
         System.out.print(port);
 
             // Bind to port 8080
