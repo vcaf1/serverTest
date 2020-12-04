@@ -39,7 +39,6 @@ public class ServerTest {
         int port = System.getenv("PORT") == null ? 25164 : Integer.parseInt(System.getenv("PORT"));
         //int portt= Integer.parseInt(System.getenv("PORT"));
         System.out.print(port); 
-        //how to make sure that the port is app is listening to the right port
 
             // Bind to port 8080
             HttpServer httpServer = HttpServer.create(new InetSocketAddress(port), 0);
