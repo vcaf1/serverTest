@@ -13,19 +13,25 @@
     <build>
   <plugins>
     <plugin>
-      <groupId>com.heroku.sdk</groupId>
-      <artifactId>heroku-maven-plugin</artifactId>
-      <version>3.0.4</version>
-      <configuration>
+        <groupId>com.jcabi</groupId>
+        <artifactId>jcabi-heroku-maven-plugin</artifactId>
+        <version>0.8</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <configuration>
         <appName>Server</appName>
-       <!-- <processTypes>
-          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Server</web>
-        </processTypes>-->
-  <appName>Server</appName>
-    <descriptorRefs>
-      <descriptorRef>jar-with-dependencies</descriptorRef>
-    </descriptorRefs>
-      </configuration>
+              <server>heroku.com</server>
+              <name>my-application</name>
+              <artifacts>
+                <artifact>${sign}{project.groupId}:${sign}{project.artifactId}:jar::${sign}{project.version}</artifact>
+              </artifacts>
+              <procfile>web: java -jar ./${sign}{project.artifactId}.jar --port=${sign}{PORT}</procfile>
+            </configuration>
+          </execution>
+        </executions>
     </plugin>
   </plugins>
 </build>
