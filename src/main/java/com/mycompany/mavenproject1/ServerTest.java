@@ -31,17 +31,18 @@ import org.json.simple.parser.ParseException;
  */
 public class ServerTest {
     
-
+//you have to find a way to catch the port from heruko..
     private static HttpURLConnection con;
 
     public static void main(String[] args) {
         try {
         int port = System.getenv("PORT") == null ? 25164 : Integer.parseInt(System.getenv("PORT"));
-        int portt= Integer.parseInt(System.getenv("PORT"));
-        System.out.print(port);
+        //int portt= Integer.parseInt(System.getenv("PORT"));
+        System.out.print(port); 
+        //how to make sure that the port is app is listening to the right port
 
             // Bind to port 8080
-            HttpServer httpServer = HttpServer.create(new InetSocketAddress(portt), 0);
+            HttpServer httpServer = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println(httpServer.getAddress());
             System.out.println(httpServer.getExecutor());
             
